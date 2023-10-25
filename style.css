@@ -1,5 +1,5 @@
 body {
-    background: #cecece;
+    background: #252525;
     color: aliceblue;
 }
 
@@ -8,44 +8,71 @@ body {
     font-size: 4rem;
     padding: 32px;
     font-family: 'Tilt Neon', sans-serif;
-    text-shadow: #000 1px 0 10px;
+    color: #2ee820;
 }
 
-.selector-wrapper {
+.main-content {
+    max-width: 1400px;
     margin: 0 auto;
-    background: #3b3b3b;
+}
+
+/* ---- USER INPUTS ---- */
+
+.selector-wrapper {
+    background: none;
     border-radius: 6px;
 }
 
 .select-tip, .input-tip {
-    padding: 12px;
+    padding: 22px 0 0 0;
     font-size: 1.6rem;
-    margin: 16px 0;
+    margin: 0;
+    color: #252525;
 }
 
-.input-field {
-    max-height: 80px;
+.selector-content {
+
+}
+
+.input-field input {
+    min-height: 48px;
+    width: 380px;
+    max-width: 100%;
+    margin: 20px auto 44px auto;
+    border-radius: 8px;
+    border: 1px solid black;
 }
 
 .input-number-area {
-    padding: 20px;
-    max-height: 80px;
-
+    background: #bed4d5;
+    text-align: center;
 }
 
-hr {
-    border: 1px solid #a8a8a8;
+.from-system-area {
+    background: #9fc1cb;
+    text-align: center;
 }
+
+.btn-group {
+    margin: 20px auto 44px auto;
+    background: #ffffff;
+}
+
+.button-area {
+    background: none;
+}
+
+
 
 .ns-btn {
     width: 25%;
     min-width: 150px;
     max-height: 48px;
     text-transform: uppercase;
-    color: rgba(184, 190, 189, 0.74);
+  //  color: rgba(184, 190, 189, 0.74);
     padding: 12px 0;
-    background: rgba(131, 131, 131, 0.06);
-    border: 1px solid #ffffff;
+    background: rgba(255, 255, 255, 0.06);
+/*    border: 1px solid #ffffff;*/
 }
 
 .btn-check:checked {
@@ -57,9 +84,8 @@ hr {
     margin: 20px auto;
 }
 
-.btn-group {
-    margin: 18px auto;
-}
+
+/* ---- RESULTS ---- */
 
 .result-area {
     padding: 20px;
@@ -74,18 +100,24 @@ hr {
     justify-content: space-evenly;
 }
 
-.given-box {
+.converted-box {
     background: none;
     min-height: 280px;
-
+    border-radius: 8px;
 }
 
 .given-header {
-    background: #b9b9b9;
+    background: #30806c;
     text-align: center;
-    font-size: 1.4rem;
+
+}
+
+.given-header p {
+    font-size: 1.6rem;
     color: #ffffff;
-    padding: 12px;
+    padding: 18px;
+    margin: 0;
+    font-family: 'Tilt Neon', sans-serif;
 }
 
 .given-number {
@@ -104,8 +136,4 @@ hr {
     text-transform: uppercase;
     background: white;
     font-family: 'Tilt Neon', sans-serif;
-}
-
-.converted {
-    background: #c9400e;
 }

@@ -12,6 +12,8 @@ $base_to = 2;
 $givenSystem = "";
 $convertedSystem = "";
 
+$errors = [];
+
 ?>
 
     <!doctype html>
@@ -36,31 +38,37 @@ $convertedSystem = "";
     <div class="header">
         <h1>Lukujärjestelmämuuntaja</h1>
     </div>
-    <div class="container">
+    <div class="main-content">
 
-        <div class="selector-wrapper row">
+        <div class="selector-wrapper">
 
-            <!-- form starts -->
-            <div class="selector-content col-12 align-self-center">
-                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+            <!------ FORM BEGINS ------>
+
+
+
+                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" class="selector-content container-fluid" method="post">
+
+                    <!--<div class="selector-content row">-->
+                <div class="row">
                     <!-- number input -->
-                    <div class="input-number-area row">
-                        <div class="input-tip col-3">
-                            <p>anna luku:</p>
+                    <div class="input-number-area col-md-4">
+                        <div class="input-tip">
+                            <p>määritä luku</p>
                         </div>
-                        <div class="input-field col-9">
+                        <div class="input-field">
                             <input type="text" id="userInputNumber" name="txtAmount" size="14"/>
                             <label for="userInputNumber"></label>
                         </div>
 
                     </div>
-                    <hr>
+
+
                     <!-- from-system select -->
-                    <div class="from-system row">
-                        <div class="select-tip col-3">
-                            <p>lähtöarvon järjestelmä</p>
+                    <div class="from-system-area col-md-8">
+                        <div class="select-tip">
+                            <p> valitse lähtöarvon järjestelmä</p>
                         </div>
-                        <div class="btn-group col-9" role="group" aria-label="Basic radio toggle button group">
+                        <div class="btn-group btn-group-primary col-9" role="group" aria-label="Basic radio toggle button group">
                             <input type="radio" class="btn-check" name="radio_from" id="btnradio1" value="des" autocomplete="off"/>
                             <label class="btn btn-outline-primary ns-btn" for="btnradio1">desimaali</label>
 
@@ -75,36 +83,18 @@ $convertedSystem = "";
                         </div>
 
                     </div>
-                    <hr>
-                    <!-- to-system select -->
-                    <div class="to-system row">
-                        <div class="select-tip col-3">
-                            <p>lopullinen järjestelmä</p>
-                        </div>
-                        <div class="btn-group col-9" role="group" aria-label="Basic radio toggle button group">
-                            <input type="radio" class="btn-check" name="radio_to" id="btnradioB1" value="des" autocomplete="off"/>
-                            <label class="btn btn-outline-primary ns-btn" for="btnradioB1">desimaali</label>
+                </div>
 
-                            <input type="radio" class="btn-check" name="radio_to" id="btnradioB2" value="bin" autocomplete="off"/>
-                            <label class="btn btn-outline-primary ns-btn" for="btnradioB2">binääri</label>
-
-                            <input type="radio" class="btn-check" name="radio_to" id="btnradioB3" value="oct" autocomplete="off"/>
-                            <label class="btn btn-outline-primary ns-btn" for="btnradioB3">oktaali</label>
-
-                            <input type="radio" class="btn-check" name="radio_to" id="btnradioB4" value="hex" autocomplete="off"/>
-                            <label class="btn btn-outline-primary ns-btn" for="btnradioB4">heksadesimaali</label>
-                        </div>
-
-                    </div>
-                    <hr>
-
-                    <div class="btnWrapper">
+                <!-- buttons -->
+                <div class="row">
+                    <div class="button-area col-12">
                         <button href="index.php" class="btn" name="btnReset">Reset</button>
-                        <button type="submit" class="btn btn-primary btn-con" name="btnConvert">Käännä</button>
+                        <button type="submit" class="btn btn-primary btn-con" name="submit">Käännä</button>
                     </div>
+                </div>
 
                 </form>
-            </div>
+            <!--</div>-->
             <!-- form ends -->
 
         </div>
@@ -112,100 +102,129 @@ $convertedSystem = "";
 
 
         <div class="result-area">
+
             <?php
-
-
-
             function convert(int $userInput, int $base_from, int $base_to) {
-                return base_convert($userInput, $base_from, $base_to);
+                return base_convert(htmlspecialchars($userInput), $base_from, $base_to);
             }
-
-
             ?>
 
             <p>
                 <?php
+
+
+
+
                 // Check if form was submitted
                 if(isset($_POST['radio_from'])) {
                 // Get post values
                 $userInput   = $_POST['txtAmount'];
                 $numSysFrom  = $_POST['radio_from'];
-                $numSysTo    = $_POST['radio_to'];
 
-                switch ($numSysFrom) {
-                    case "des":
-                        $base_from = 10;
-                        $givenSystem = "desimaali";
-                        break;
-                    case "bin":
-                        $base_from = 2;
-                        $givenSystem = "binääri";
-                        break;
-                    case "oct":
-                        $base_from = 8;
-                        $givenSystem = "oktaali";
-                        break;
-                    case "hex":
-                        $base_from = 16;
-                        $givenSystem = "heksadesimaali";
-                        break;
+
+                // --- error validations ---
+                if ($userInput == "") {
+                    $errors[] = "Anna nyt joku luku!";
                 }
-
-                switch ($numSysTo) {
-                    case "des":
-                        $base_to = 10;
-                        $convertedSystem = "desimaali";
-                        break;
-                    case "bin":
-                        $base_to = 2;
-                        $convertedSystem = "binääri";
-                        break;
-                    case "oct":
-                        $base_to = 8;
-                        $convertedSystem = "oktaali";
-                        break;
-                    case "hex":
-                        $base_to = 16;
-                        $convertedSystem = "heksadesimaali";
-                        break;
+                if (!$base_from) {
+                    $errors[] = "Alkuperäinen lukujärjestelmä vaaditaan tiedoksi!";
                 }
+                ?>
 
+
+
+                <?php
+
+                if (empty($errors)) {
+
+                    switch ($numSysFrom) {
+                        case "des":
+                            $base_from = 10;
+                            $givenSystem = "desimaali";
+                            break;
+                        case "bin":
+                            $base_from = 2;
+                            $givenSystem = "binääri";
+                            break;
+                        case "oct":
+                            $base_from = 8;
+                            $givenSystem = "oktaali";
+                            break;
+                        case "hex":
+                            $base_from = 16;
+                            $givenSystem = "heksadesimaali";
+                            break;
+                    }
+
+                    switch ($numSysTo) {
+                        case "des":
+                            $base_to = 10;
+                            $convertedSystem = "desimaali";
+                            break;
+                        case "bin":
+                            $base_to = 2;
+                            $convertedSystem = "binääri";
+                            break;
+                        case "oct":
+                            $base_to = 8;
+                            $convertedSystem = "oktaali";
+                            break;
+                        case "hex":
+                            $base_to = 16;
+                            $convertedSystem = "heksadesimaali";
+                            break;
+                    }
+                } else { ?>
+                    <div class="alert alert-danger">
+                    <?php foreach ($errors as $error) { ?>
+                    <div><?php echo $error ?></div>
+                    <?php }
+
+                }?>
+                    </div>
+            <?php
+                }
                 ?>
             <div class="result-box row">
-                <div class="given-box col-5">
-                    <div class="given-header">
-                        <p>annettu luku</p>
-                    </div>
-                    <div class="given-number">
-                        <?php echo $userInput; ?>
-                    </div>
-                    <div class="given-system">
-                        <?php echo $givenSystem; ?>
-                    </div>
-                </div>
-                <div class="converted-box col-5">
+
+                <div class="converted-box col-md-3">
                     <div class="given-header converted">
-                        <p>käännetty luku</p>
+                        <p>desimaali</p>
                     </div>
                     <div class="given-number">
                         <?php echo convert($userInput, $base_from, $base_to); ?>
                     </div>
-                    <div class="given-system">
-                        <?php echo $convertedSystem; ?>
+                </div>
+                <div class="converted-box col-md-3">
+                    <div class="given-header converted">
+                        <p>binääri</p>
+                    </div>
+                    <div class="given-number">
+                        <?php echo convert($userInput, $base_from, $base_to); ?>
                     </div>
                 </div>
-
+                <div class="converted-box col-md-3">
+                    <div class="given-header converted">
+                        <p>oktaali</p>
+                    </div>
+                    <div class="given-number">
+                        <?php echo convert($userInput, $base_from, $base_to); ?>
+                    </div>
+                </div>
+                <div class="converted-box col-md-3">
+                    <div class="given-header converted">
+                        <p>heksadesimaali</p>
+                    </div>
+                    <div class="given-number">
+                        <?php echo convert($userInput, $base_from, $base_to); ?>
+                    </div>
+                </div>
             </div>
 
 
 
 
-        <?php
-        } else {
-            echo "Anna kaikki tiedot!";
-        }
-        ?>
-            </p>
+
 
 
 
@@ -221,7 +240,3 @@ $convertedSystem = "";
 
     </html>
 
-
-<?php
-
-?>
