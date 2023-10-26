@@ -1,13 +1,17 @@
 body {
-    background: #252525;
+    background: #1e1e1e;
     color: aliceblue;
 }
 
 .header h1 {
     text-align: center;
-    font-size: 4rem;
-    padding: 32px;
-    font-family: 'Tilt Neon', sans-serif;
+    font-size: 80px;
+    background: -webkit-linear-gradient(#15e7c0, #007369);
+    background-clip: border-box;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding: 42px;
+    font-family: 'Changa', sans-serif;
     color: #2ee820;
 }
 
@@ -16,16 +20,31 @@ body {
     margin: 0 auto;
 }
 
+.accordion {
+    margin: 34px 0;
+}
+
+.accordion-item>.accordion-header>.accordion-button {
+    font-weight: normal;
+    font-size: 1.2rem;
+    color: white;
+    background: #0c828d;
+}
+
+.bi-book {
+    margin-right: 10px;
+}
+
 /* ---- USER INPUTS ---- */
 
 .selector-wrapper {
-    background: none;
+
     border-radius: 6px;
 }
 
 .select-tip, .input-tip {
     padding: 22px 0 0 0;
-    font-size: 1.6rem;
+    font-size: 2rem;
     margin: 0;
     color: #252525;
 }
@@ -36,21 +55,35 @@ body {
 
 .input-field input {
     min-height: 48px;
-    width: 380px;
+    width: 320px;
     max-width: 100%;
     margin: 20px auto 44px auto;
     border-radius: 8px;
     border: 1px solid black;
+    padding: 6px 12px;
+    font-family: Arial;
+    font-size: 1.2rem;
 }
 
 .input-number-area {
-    background: #bed4d5;
+    background: -webkit-linear-gradient(#059d82, #007369);
+    background-clip: border-box;
     text-align: center;
+    border: 2px solid #007369;
+    color: white;
+
 }
 
 .from-system-area {
-    background: #9fc1cb;
+    background: -webkit-linear-gradient(#059d82, #007369);
+    background-clip: border-box;
     text-align: center;
+    border: 2px solid #007369;
+
+}
+
+.tip p {
+    color: white;
 }
 
 .btn-group {
@@ -60,6 +93,9 @@ body {
 
 .button-area {
     background: none;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 36px 0;
 }
 
 
@@ -69,30 +105,42 @@ body {
     min-width: 150px;
     max-height: 48px;
     text-transform: uppercase;
-  //  color: rgba(184, 190, 189, 0.74);
+    font-weight: bolder;
     padding: 12px 0;
     background: rgba(255, 255, 255, 0.06);
 /*    border: 1px solid #ffffff;*/
 }
 
-.btn-check:checked {
-    border: 1px solid #ffffff;
+.ns-btn:checked {
+
 }
 
 .btn-con {
-    background: #127a7a;
-    margin: 20px auto;
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    padding: 14px 28px;
+
 }
 
+.ch-btn {
+    font-size: 1.4rem;
+    padding: 14px 28px;
+    width: 400px;
+    max-width: 96%;
+}
+
+.bi-arrow-clockwise {
+    padding-bottom: 4px;
+}
 
 /* ---- RESULTS ---- */
 
 .result-area {
     padding: 20px;
     margin: 20px 0;
-    background: darkslategray;
+    background: #1f1f1f;
     color: aliceblue;
-    border: white 1px solid;
+    border: #007369 2px solid;
     border-radius: 6px;
 }
 
@@ -102,8 +150,20 @@ body {
 
 .converted-box {
     background: none;
-    min-height: 280px;
+/*    min-height: 280px;*/
     border-radius: 8px;
+}
+
+#bg1 { background: #02A676; }
+#bg2 { background: #008C72; }
+#bg3 { background: #007369; }
+#bg4 { background: #005A5B; }
+
+ .given-header p.base {
+    color: white;
+    font-size: 0.9rem;
+    padding: 0 0 16px 0;
+    font-family: Arial, "Sans Serif Collection";
 }
 
 .given-header {
@@ -113,9 +173,9 @@ body {
 }
 
 .given-header p {
-    font-size: 1.6rem;
+    font-size: 1.7rem;
     color: #ffffff;
-    padding: 18px;
+    padding: 18px 0 0 0;
     margin: 0;
     font-family: 'Tilt Neon', sans-serif;
 }
@@ -136,4 +196,33 @@ body {
     text-transform: uppercase;
     background: white;
     font-family: 'Tilt Neon', sans-serif;
+}
+
+.additional-info {
+    margin: 400px 0 40px 0;
+}
+
+.logic-button {
+    padding: 10px 18px;
+    margin: 0 12px 0 0;
+    background: -webkit-linear-gradient(#0c828d, #095b5e);
+    border: 1px solid #02292a;
+}
+
+.logic-button:hover {
+    border: 1px solid white;
+}
+
+.info-image {
+    background: black;
+    margin: 30px auto;
+    text-align: center;
+    border: 1px solid darkgray;
+    border-radius: 6px;
+}
+
+.info-image img {
+    width: 96%;
+    height: auto;
+    margin: 30px auto;
 }
